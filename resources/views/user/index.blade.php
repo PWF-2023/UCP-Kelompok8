@@ -78,7 +78,7 @@
                                             <span>
                                                 <span
                                                     class="text-green-600 dark:text-green-400">({{ $user->todos->where('is_complete', true)->count() }})
-                                                </span>
+                                                </span>/
                                                 <span
                                                     class="text-blue-600 dark:text-blue-400">({{ $user->todos->where('is_complete', false)->count() }})
                                                 </span>

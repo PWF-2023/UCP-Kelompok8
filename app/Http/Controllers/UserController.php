@@ -32,7 +32,7 @@ class UserController extends Controller
         $user->timestamps = false;
         $user->is_admin = true;
         $user->save();
-        return back()->with('success', 'Make admin successfully!');
+        return back()->with('success', $user->name . ' - Make Admin successfully!');
     }
     public function removeadmin(User $user)
     {
@@ -40,10 +40,12 @@ class UserController extends Controller
             $user->timestamps = false;
             $user->is_admin = false;
             $user->save();
-            return back()->with('success', 'Remove admin successfullly!');
+            // return back()->with('success', 'Remove Admin successfully!');
+            return back()->with('success', $user->name . 'Remove Admin successfully!');
         } else {
             return redirect()->route('user.index');
         }
+
     }
     public function destroy(User $user)
     {
