@@ -163,16 +163,11 @@
 
                                             <span>
 
-                                                <span <<<<<<< HEAD
+                                                <span
                                                     class="text-green-600 dark:text-green-400">({{ $user->todos->where('is_complete', true)->count() }})
                                                 </span>/
-                                                =======
-                                                class="text-green-600 dark:text-green-400">({{ $user->todos->where('is_complete', true)->count() }}
-                                            </span>/
-
-                                            >>>>>>> 48f011150e9e11fc6c1b36be049a9d798a303ccf
-                                            <span
-                                                class="text-blue-600 dark:text-blue-400">{{ $user->todos->where('is_complete', false)->count() }})</span>
+                                                <span
+                                                    class="text-blue-600 dark:text-blue-400">{{ $user->todos->where('is_complete', false)->count() }}</span>
                                             </span>
                                         </p>
                                     </td>
