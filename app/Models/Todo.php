@@ -21,7 +21,7 @@ class Todo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    public function categories()
     {
         return $this->hasOne(Category::class);
     }

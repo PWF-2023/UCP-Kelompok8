@@ -9,7 +9,10 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('category.index');
+        $categories = Category::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('category.index', compact('categories'));
     }
 
     public function store(Request $request, Category $category)
