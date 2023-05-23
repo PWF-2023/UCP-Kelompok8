@@ -66,9 +66,9 @@
                     <div class="flex flex-col sm:flex-row items-center justify-between">
                         <div class="w-full sm:w-1/2 2xl:w-1/3">
                             @if (request('search'))
-                            <h2 class="pb-3 text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                                Search results for : {{ request('search') }}
-                            </h2>
+                                <h2 class="pb-3 text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                                    Search results for : {{ request('search') }}
+                                </h2>
                             @endif
                             <form class="flex items-center gap-2">
                                 <x-text-input id="search" name="search" type="text" class="w-full"
@@ -81,16 +81,15 @@
                         </div>
                         <div>
                             @if (session('success'))
-                            <p x-data="{ show: true }" x-show="show" x-transition
-                                x-init="setTimeout(() => show = false, 5000)"
-                                class="text-sm text-green-600 dark:text-green-400 mt-5 sm:mt-0">{{ session('success') }}
-                            </p>
+                                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
+                                    class="text-sm text-green-600 dark:text-green-400 mt-5 sm:mt-0">
+                                    {{ session('success') }}
+                                </p>
                             @endif
                             @if (session('danger'))
-                            <p x-data="{ show: true }" x-show="show" x-transition
-                                x-init="setTimeout(() => show = false, 5000)"
-                                class="text-sm text-red-600 dark:text-red-400 mt-5 sm:mt-0">{{ session('danger') }}
-                            </p>
+                                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
+                                    class="text-sm text-red-600 dark:text-red-400 mt-5 sm:mt-0">{{ session('danger') }}
+                                </p>
                             @endif
                         </div>
                     </div>
@@ -180,36 +179,36 @@
 
                                             {{-- Action here --}}
                                             @if ($user->is_admin)
-                                            <form action="{{ route('user.removeadmin', $user) }}" method="Post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="submit"
-                                                    class="text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                                                <form action="{{ route('user.removeadmin', $user) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="text-blue-600 dark:text-blue-400 whitespace-nowrap">
 
                                                         Remove Admin
 
-                                                </button>
+                                                    </button>
 
-                                            </form>
+                                                </form>
                                             @else
-                                            <form action="{{ route('user.makeadmin', $user) }}" method="Post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="submit"
-                                                    class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                <form action="{{ route('user.makeadmin', $user) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="text-red-600 dark:text-red-400 whitespace-nowrap">
 
-                                                    Make Admin
+                                                        Make Admin
 
-                                                </button>
+                                                    </button>
 
-                                            </form>
+                                                </form>
                                             @endif
                                             <form action="{{ route('user.destroy', $user) }}" method="Post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
                                                     class="text-red-600 dark:text-red-400 whitespace-nowrap">
-                                                                                            Delete
+                                                    Delete
                                                 </button>
                                             </form>
 
