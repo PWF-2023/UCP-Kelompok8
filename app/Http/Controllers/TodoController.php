@@ -53,7 +53,8 @@ class TodoController extends Controller
     {
         if (auth()->user()->id == $todo->user_id) {
             // dd($todo);
-            return view('todo.edit', compact('todo'));
+            $categories = Category::where('user_id', auth()->user()->id)->get();
+            return view('todo.edit', compact('todo', 'categories'));
         } else {
             // abort(403);
             // abort(403, 'Not authorized');
@@ -64,15 +65,25 @@ class TodoController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
+            'category_id' => 'nullable',
         ]);
         // Practical
         // $todo->title = $request->title;
         // $todo->save();
 
         // Eloquent Way - Readable
-        $todo->update([
+     /*    $todo->update([
             'title' => ucfirst($request->title),
-        ]);
+        ]); */
+        $todo = [
+            'title' => ucfirst($request->title),
+            'user_id' => auth()->user()->id,
+        ];
+        if (!empty($request->category_id)) {
+            $todo['category_id'] = $request->category_id;
+        }
+
+        $todo = Todo::create($todo);
         return redirect()->route('todo.index')->with('success', 'Todo updated successfully!');
     }
     public function complete(Todo $todo)
