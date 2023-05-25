@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -18,14 +19,22 @@
                                 required autofocus autocomplete="title" />
                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
                         </div>
-                   {{--      <div class="mb-6">
-                            <x-input-label for="category" :value="__('Category')" />
-                            <select name="category" id="category" class="block w-full mt-1">
-                                @foreach ( as )
-
+                        <div class="mb-6">
+                            <x-input-label for="category" :value="__('Category')"/>
+                            <select id="category" name="category_id" class="form-select @error('category_id') is-invalid @enderror" required>
+                                <option value="">Select a category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
-                            </select>>
-                        </div> --}}
+                            </select>
+                            @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                             <a href="{{ route('todo.index') }}"

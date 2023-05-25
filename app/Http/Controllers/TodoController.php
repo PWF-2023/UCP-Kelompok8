@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Todo;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,20 +21,23 @@ class TodoController extends Controller
             ->count();
         return view('todo.index', compact('todos', 'todosCompleted'));
     }
-    public function store(Request $request, Todo $todo)
+    public function store(Request $request, Todo $todo, Category $category)
     {
         $request->validate([
             'title' => 'required|max:255',
+            'category_id' => 'nullable',
         ]);
         $todo = Todo::create([
             'title' => ucfirst($request->title),
+            'category_id' => ucfirst($request->category_id),
             'user_id' => auth()->user()->id,
         ]);
         return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
     public function create()
     {
-        return view('todo.create');
+        $categories = Category::all();
+        return view('todo.create', compact('categories'));
     }
     public function edit(Todo $todo)
     {
