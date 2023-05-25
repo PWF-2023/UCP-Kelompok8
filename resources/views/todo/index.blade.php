@@ -40,7 +40,7 @@
                                 <th scope="col" class="px-6 py-3">
                                     Category
                                 </th>
-                                <th scope="col" class="px-6 py-3 md:block">
+                                <th scope="col" class="hidden px-6 py-3 md:block">
                                     Status
                                 </th>
                                 <th scope="col" class="px-6 py-3">
