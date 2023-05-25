@@ -21,12 +21,12 @@
                         </div>
                         <div class="mb-6">
                             <x-input-label for="category" :value="__('Category')"/>
-                            <select id="category" name="category_id" class="form-select @error('category_id') is-invalid @enderror" required>
-                                <option value="">Select a category</option>
+                            <x-select id="category" name="category_id" class="form-select">
+                                <option value="">Empty</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                             @error('category_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -56,7 +56,12 @@
                                             {{ $todo->title }}</a>
                                     </td>
                                     <td class="px-6 py-4">
-
+                                        @if ($todo->category_id == null)
+                                            <span></span>
+                                        @else
+                                            {{ $todo->category->title }}
+                                        @endif
+                                        {{--    <span class="text-green-600 dark:text-green-400">{{ $todo->category->title }}</span> --}}
                                     </td>
                                     <td class="hidden px-6 py-4 md:block">
                                         @if ($todo->is_complete == false)
