@@ -36,7 +36,7 @@ class TodoController extends Controller
     }
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('user_id', auth()->user()->id)->get();
         return view('todo.create', compact('categories'));
     }
     public function edit(Todo $todo)
