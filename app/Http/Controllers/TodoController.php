@@ -51,10 +51,11 @@ class TodoController extends Controller
     }
     public function edit(Todo $todo)
     {
+        $categories = Category::where('user_id', auth()->user()->id)->get();
         if (auth()->user()->id == $todo->user_id) {
             // dd($todo);
-            $categories = Category::where('user_id', auth()->user()->id)->get();
-            return view('todo.edit', compact('todo', 'categories'));
+
+            return view('todo.edit', compact(['todo', 'categories']));
         } else {
             // abort(403);
             // abort(403, 'Not authorized');
@@ -75,15 +76,15 @@ class TodoController extends Controller
      /*    $todo->update([
             'title' => ucfirst($request->title),
         ]); */
-        $todo = [
+        $todo->update([
             'title' => ucfirst($request->title),
-            'user_id' => auth()->user()->id,
-        ];
+            'category_id' => $request->category_id,
+            //'user_id' => auth()->user()->id,
+        ]);
         if (!empty($request->category_id)) {
             $todo['category_id'] = $request->category_id;
         }
-
-        $todo = Todo::create($todo);
+        $todo->save();
         return redirect()->route('todo.index')->with('success', 'Todo updated successfully!');
     }
     public function complete(Todo $todo)
