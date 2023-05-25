@@ -27,11 +27,21 @@ class TodoController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'nullable',
         ]);
-        $todo = Todo::create([
+        // $todo = Todo::create([
+        //     'title' => ucfirst($request->title),
+        //     // 'category_id' => ucfirst($request->category_id),
+        //     'user_id' => auth()->user()->id,
+        // ]);
+        $todo = [
             'title' => ucfirst($request->title),
-            'category_id' => ucfirst($request->category_id),
             'user_id' => auth()->user()->id,
-        ]);
+        ];
+
+        if (!empty($request->category_id)) {
+            $todo['category_id'] = $request->category_id;
+        }
+
+        $todo = Todo::create($todo);
         return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
     public function create()
