@@ -30,12 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-    Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::resource('category', CategoryController::class)->except(['show']);
+
+    // Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    // Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    // Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    // Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    // Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+    // Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::resource('todo', TodoController::class)->except(['show']);
 
